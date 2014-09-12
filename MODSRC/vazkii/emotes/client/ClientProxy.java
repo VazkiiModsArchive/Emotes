@@ -1,6 +1,8 @@
 package vazkii.emotes.client;
 
 import net.minecraft.client.model.ModelBiped;
+import vazkii.emotes.client.emote.EmoteWave;
+import vazkii.emotes.client.emote.base.EmoteHandler;
 import vazkii.emotes.client.emote.base.ModelAccessor;
 import vazkii.emotes.common.CommonProxy;
 import aurelienribon.tweenengine.Tween;
@@ -18,6 +20,12 @@ public class ClientProxy extends CommonProxy {
 		super.init();
 		Tween.registerAccessor(ModelBiped.class, new ModelAccessor());
 		FMLCommonHandler.instance().bus().register(this);
+		
+		initEmotes();
+	}
+	
+	private void initEmotes() {
+		EmoteHandler.emoteMap.put("wave", EmoteWave.class);
 	}
 	
 	@SubscribeEvent
