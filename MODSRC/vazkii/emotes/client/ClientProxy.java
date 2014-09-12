@@ -26,6 +26,7 @@ public class ClientProxy extends CommonProxy {
 	
 	private void initEmotes() {
 		EmoteHandler.emoteMap.put("wave", EmoteWave.class);
+
 	}
 	
 	@SubscribeEvent

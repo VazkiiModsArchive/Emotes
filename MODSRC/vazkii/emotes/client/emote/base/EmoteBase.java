@@ -24,7 +24,6 @@ public abstract class EmoteBase {
 		getTimeline(player, model).start(emoteManager).setCallback(new TweenCallback() {
 			@Override
 			public void onEvent(int type, BaseTween<?> source) {
-				System.out.println("Event: " + type);
 				if(type == COMPLETE)
 					done = true;
 			}

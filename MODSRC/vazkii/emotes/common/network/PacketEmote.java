@@ -7,6 +7,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
@@ -50,8 +51,11 @@ public class PacketEmote implements IMessage, IMessageHandler<PacketEmote, IMess
 	public IMessage onMessage(PacketEmote message, MessageContext context) {
 		World world = Minecraft.getMinecraft().theWorld;
 		EntityPlayer player = world.getPlayerEntityByName(message.playerName);
-		if(player != null)
-			EmoteHandler.putEmote(player, message.emoteName);
+		if(player != null) {
+			if(message.emoteName.equals("list"))
+				player.addChatComponentMessage(new ChatComponentText(EmoteHandler.buildEmoteListStr()));
+			else EmoteHandler.putEmote(player, message.emoteName);
+		}
 		
 		return null;
 	}

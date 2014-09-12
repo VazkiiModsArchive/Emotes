@@ -1,7 +1,7 @@
 package vazkii.emotes.client.emote.base;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.WeakHashMap;
 
 import net.minecraft.client.model.ModelBiped;
@@ -9,15 +9,19 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.ChatStyle;
+import net.minecraft.util.EnumChatFormatting;
 
 public final class EmoteHandler {
 
-	public static Map<String, Class<? extends EmoteBase>> emoteMap = new HashMap();
+	public static Map<String, Class<? extends EmoteBase>> emoteMap = new TreeMap();
 	private static WeakHashMap<EntityPlayer, EmoteBase> playerEmotes = new WeakHashMap();
 	
 	public static void putEmote(EntityPlayer player, String emoteName) {
-		if(emoteName.contains(emoteName))
+		if(emoteMap.containsKey(emoteName))
 			putEmote(player, emoteMap.get(emoteName));
+		else player.addChatComponentMessage(new ChatComponentText("That emote doesn't exist. Try /emote list.").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
 	}
 	
 	public static void putEmote(EntityPlayer player, Class<? extends EmoteBase> clazz) {
@@ -41,6 +45,14 @@ public final class EmoteHandler {
 				else emote.update();
 			}
 		}
+	}
+	
+	public static String buildEmoteListStr() {
+		String list = "Emote List: /emote ";
+		for(String s : emoteMap.keySet())
+			list = list + s + ", ";
+		
+		return list.replaceAll(", $", ".");
 	}
 	
 }
