@@ -1,0 +1,17 @@
+[
+{
+  "modid": "Emotes",
+  "name": "Emotes",
+  "description": "Wave! Dance! Facepalm! Emotes Mod! Try /emote list for a list of emotes.",
+  "version": "ANT:VERSION",
+  "mcversion": "1.7.2",
+  "logoFile": "",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["Vazkii"],
+  "credits": "",
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -23,5 +23,10 @@ public class CommandEmote extends CommandBase {
 		if(args.length > 0 && sender instanceof EntityPlayer)
 			PacketHandler.INSTANCE.sendToAll(new PacketEmote(args[0], sender.getCommandSenderName()));
 	}
+	
+	@Override
+	public int getRequiredPermissionLevel() {
+		return 0;
+	}
 
 }
