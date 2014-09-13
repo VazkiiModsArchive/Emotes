@@ -74,6 +74,7 @@ public class ClientProxy extends CommonProxy {
 			float ctime = (float) Math.floor(time) + event.renderTickTime;
 			delta = (ctime - time) * 50;
 			time = ctime;
+			EmoteHandler.clearPlayerList();
 		}
 	}
 	

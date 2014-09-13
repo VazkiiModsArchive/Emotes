@@ -9,8 +9,8 @@ import aurelienribon.tweenengine.Tween;
 
 public class EmoteWave extends EmoteBase {
 
-	public EmoteWave(EntityPlayer player, ModelBiped model) {
-		super(player, model);
+	public EmoteWave(EntityPlayer player, ModelBiped model, ModelBiped armorModel, ModelBiped armorLegsModel) {
+		super(player, model, armorModel, armorLegsModel);
 	}
 
 	@Override

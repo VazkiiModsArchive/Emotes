@@ -9,8 +9,8 @@ import vazkii.emotes.client.emote.base.ModelAccessor;
 
 public class EmoteRun extends EmoteBase {
 
-	public EmoteRun(EntityPlayer player, ModelBiped model) {
-		super(player, model);
+	public EmoteRun(EntityPlayer player, ModelBiped model, ModelBiped armorModel, ModelBiped armorLegsModel) {
+		super(player, model, armorModel, armorLegsModel);
 	}
 
 	@Override

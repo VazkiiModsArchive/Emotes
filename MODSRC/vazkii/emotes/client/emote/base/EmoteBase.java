@@ -14,36 +14,56 @@ public abstract class EmoteBase {
 	
 	public TweenManager emoteManager;
 	private ModelBiped model;
+	private ModelBiped armorModel;
+	private ModelBiped armorLegsModel;
 	private EmoteState state;
 	
 	private boolean done = false;
 	
-	public EmoteBase(EntityPlayer player, ModelBiped model) {
+	public EmoteBase(EntityPlayer player, ModelBiped model, ModelBiped armorModel, ModelBiped armorLegsModel) {
 		emoteManager = new TweenManager();
 		state = new EmoteState(this);
 		this.model = model;
-		
-		getTimeline(player, model).start(emoteManager).setCallback(new TweenCallback() {
-			@Override
-			public void onEvent(int type, BaseTween<?> source) {
-				if(type == COMPLETE)
-					done = true;
-			}
-		});
+		this.armorModel = armorModel;
+		this.armorLegsModel = armorLegsModel;
+
+		startTimeline(player, model, true);
+		startTimeline(player, armorModel, false);
+		startTimeline(player, armorLegsModel, false);
+	}
+	
+	void startTimeline(EntityPlayer player, ModelBiped model, boolean callback) {
+		Timeline timeline = getTimeline(player, model).start(emoteManager);
+		if(callback)
+			timeline.setCallback(new FinishCallback());
 	}
 	
 	public abstract Timeline getTimeline(EntityPlayer player, ModelBiped model);
 	
 	public abstract boolean usesBodyPart(int part);
 	
-	public void update() {
+	public void update(boolean doUpdate) {
 		state.load(model);
-		emoteManager.update(ClientProxy.delta);
-		state.save(model);
+		state.load(armorModel);
+		state.load(armorLegsModel);
+		if(doUpdate) {
+			emoteManager.update(ClientProxy.delta);
+			state.save(model);
+		}
 	}
 	
 	public boolean isDone() {
 		return done;
+	}
+	
+	private class FinishCallback implements TweenCallback {
+		
+		@Override
+		public void onEvent(int type, BaseTween<?> source) {
+			if(type == COMPLETE)
+				done = true;
+		}
+		
 	}
 	
 }

@@ -9,8 +9,8 @@ import vazkii.emotes.client.emote.base.ModelAccessor;
 
 public class EmoteAirGuitar extends EmoteBase {
 
-	public EmoteAirGuitar(EntityPlayer player, ModelBiped model) {
-		super(player, model);
+	public EmoteAirGuitar(EntityPlayer player, ModelBiped model, ModelBiped armorModel, ModelBiped armorLegsModel) {
+		super(player, model, armorModel, armorLegsModel);
 	}
 
 	@Override
