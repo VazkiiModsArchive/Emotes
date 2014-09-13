@@ -46,6 +46,8 @@ public final class EmoteHandler {
 					model.bipedHead.rotateAngleZ = 0F;
 					model.bipedHeadwear.rotateAngleZ = 0F;
 					model.bipedBody.rotateAngleZ = 0F;
+					model.bipedRightLeg.rotateAngleZ = 0F;
+					model.bipedLeftLeg.rotateAngleZ = 0F;
 				}
 				else emote.update();
 			}
