@@ -1,14 +1,11 @@
 package vazkii.emotes.common.network;
 
+import io.netty.buffer.ByteBuf;
+
 import java.io.IOException;
 
-import vazkii.emotes.client.emote.base.EmoteHandler;
-import io.netty.buffer.ByteBuf;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.World;
+import vazkii.emotes.common.Emotes;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
@@ -49,14 +46,7 @@ public class PacketEmote implements IMessage, IMessageHandler<PacketEmote, IMess
 
 	@Override
 	public IMessage onMessage(PacketEmote message, MessageContext context) {
-		World world = Minecraft.getMinecraft().theWorld;
-		EntityPlayer player = world.getPlayerEntityByName(message.playerName);
-		if(player != null) {
-			if(message.emoteName.equals("list"))
-				player.addChatComponentMessage(EmoteHandler.buildEmoteListStr());
-			else EmoteHandler.putEmote(player, message.emoteName);
-		}
-		
+		Emotes.proxy.handlePacket(message);
 		return null;
 	}
 	

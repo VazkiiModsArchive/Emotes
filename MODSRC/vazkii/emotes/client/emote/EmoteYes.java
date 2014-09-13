@@ -1,11 +1,11 @@
 package vazkii.emotes.client.emote;
 
-import aurelienribon.tweenengine.Timeline;
-import aurelienribon.tweenengine.Tween;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import vazkii.emotes.client.emote.base.EmoteBase;
 import vazkii.emotes.client.emote.base.ModelAccessor;
+import aurelienribon.tweenengine.Timeline;
+import aurelienribon.tweenengine.Tween;
 
 public class EmoteYes extends EmoteBase {
 

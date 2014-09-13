@@ -33,6 +33,10 @@ public final class EmoteHandler {
 		ModelBiped model = getPlayerModel();
 		ModelBiped armorModel = getPlayerArmorModel();
 		ModelBiped armorLegModel = getPlayerArmorLegModel();
+		
+		System.out.println(model.bipedHead.rotateAngleY);
+		if(model.bipedHead.rotateAngleY < 0)
+			model.bipedHead.rotateAngleY = 2 * (float) Math.PI - model.bipedHead.rotateAngleY; 
 
 		try {
 			if(playerEmotes.containsKey(player))

@@ -1,6 +1,9 @@
 package vazkii.emotes.client;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 import vazkii.emotes.client.emote.EmoteAirGuitar;
 import vazkii.emotes.client.emote.EmoteBalance;
 import vazkii.emotes.client.emote.EmoteCheer;
@@ -24,6 +27,7 @@ import vazkii.emotes.client.emote.EmoteZombie;
 import vazkii.emotes.client.emote.base.EmoteHandler;
 import vazkii.emotes.client.emote.base.ModelAccessor;
 import vazkii.emotes.common.CommonProxy;
+import vazkii.emotes.common.network.PacketEmote;
 import aurelienribon.tweenengine.Tween;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
@@ -43,6 +47,17 @@ public class ClientProxy extends CommonProxy {
 		FMLCommonHandler.instance().bus().register(this);
 		
 		initEmotes();
+	}
+	
+	@Override
+	public void handlePacket(PacketEmote message) {
+		World world = Minecraft.getMinecraft().theWorld;
+		EntityPlayer player = world.getPlayerEntityByName(message.playerName);
+		if(player != null) {
+			if(message.emoteName.equals("list"))
+				player.addChatComponentMessage(EmoteHandler.buildEmoteListStr());
+			else EmoteHandler.putEmote(player, message.emoteName);
+		}
 	}
 	
 	private void initEmotes() {

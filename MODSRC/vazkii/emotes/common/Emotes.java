@@ -1,6 +1,5 @@
 package vazkii.emotes.common;
 
-import net.minecraft.entity.Entity;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.SidedProxy;
