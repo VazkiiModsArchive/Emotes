@@ -8,6 +8,7 @@ import vazkii.emotes.client.emote.EmoteFacepalm;
 import vazkii.emotes.client.emote.EmoteHeadbang;
 import vazkii.emotes.client.emote.EmoteNo;
 import vazkii.emotes.client.emote.EmoteSalute;
+import vazkii.emotes.client.emote.EmoteShaftHeadTilt;
 import vazkii.emotes.client.emote.EmoteWave;
 import vazkii.emotes.client.emote.EmoteYes;
 import vazkii.emotes.client.emote.EmoteZombie;
@@ -43,6 +44,7 @@ public class ClientProxy extends CommonProxy {
 		EmoteHandler.emoteMap.put("headbang", EmoteHeadbang.class);
 		EmoteHandler.emoteMap.put("no", EmoteNo.class);
 		EmoteHandler.emoteMap.put("salute", EmoteSalute.class);
+		EmoteHandler.emoteMap.put("shaftheadtilt", EmoteShaftHeadTilt.class);
 		EmoteHandler.emoteMap.put("wave", EmoteWave.class);
 		EmoteHandler.emoteMap.put("yes", EmoteYes.class);
 		EmoteHandler.emoteMap.put("zombie", EmoteZombie.class);
