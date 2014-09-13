@@ -3,6 +3,7 @@ package vazkii.emotes.client.emote.base;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.WeakHashMap;
+import java.util.regex.Pattern;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -12,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ChatStyle;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
 
 public final class EmoteHandler {
 
@@ -27,7 +29,9 @@ public final class EmoteHandler {
 	public static void putEmote(EntityPlayer player, Class<? extends EmoteBase> clazz) {
 		ModelBiped model = getPlayerModel();
 		try {
-			playerEmotes.put(player, clazz.getConstructor(EntityPlayer.class, ModelBiped.class).newInstance(player, model));
+			if(playerEmotes.containsKey(player))
+				player.addChatComponentMessage(new ChatComponentText("You're already doing an emote.").setChatStyle(new ChatStyle().setColor(EnumChatFormatting.RED)));
+			else playerEmotes.put(player, clazz.getConstructor(EntityPlayer.class, ModelBiped.class).newInstance(player, model));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -59,12 +63,17 @@ public final class EmoteHandler {
 		return render.modelBipedMain;
 	}
 	
-	public static String buildEmoteListStr() {
-		String list = "Emote List: /emote ";
-		for(String s : emoteMap.keySet())
-			list = list + s + ", ";
+	public static IChatComponent buildEmoteListStr() {
+		final String split = "{\"text\":\", \"},";
+		final String button = "{\"text\":\"[%emote%]\",\"color\":\"aqua\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/emote %emote%\"},\"hoverEvent\":{\"action\":\"show_text\",\"value\":{\"text\":\"Click to execute this emote\",\"color\":\"yellow\"}}},";
 		
-		return list.replaceAll(", $", ".");
+		String str = "[{\"text\":\"Emote List: \"},";
+		for(String emote : emoteMap.keySet())
+			str = str + button.replaceAll("%emote%", emote) + split;
+		str = str.replaceAll(Pattern.quote("," + split) + "$", "]");
+		System.out.println(str);
+		
+		return IChatComponent.Serializer.func_150699_a(str);
 	}
 	
 }

@@ -53,7 +53,7 @@ public class PacketEmote implements IMessage, IMessageHandler<PacketEmote, IMess
 		EntityPlayer player = world.getPlayerEntityByName(message.playerName);
 		if(player != null) {
 			if(message.emoteName.equals("list"))
-				player.addChatComponentMessage(new ChatComponentText(EmoteHandler.buildEmoteListStr()));
+				player.addChatComponentMessage(EmoteHandler.buildEmoteListStr());
 			else EmoteHandler.putEmote(player, message.emoteName);
 		}
 		
