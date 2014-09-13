@@ -9,13 +9,15 @@ import vazkii.emotes.common.CommonProxy;
 import aurelienribon.tweenengine.Tween;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.RenderTickEvent;
 
 public class ClientProxy extends CommonProxy {
 
+	public static float time = 0F;
 	public static float delta = 0F;
-	
+
 	@Override
 	public void init() {
 		super.init();
@@ -32,7 +34,16 @@ public class ClientProxy extends CommonProxy {
 	
 	@SubscribeEvent
 	public void onRenderStart(RenderTickEvent event) {
+		if(event.phase == Phase.START) {
+			float ctime = (float) Math.floor(time) + event.renderTickTime;
+			delta = (ctime - time) * 50;
+			time = ctime;
+		}
+	}
+	
+	@SubscribeEvent
+	public void onTick(ClientTickEvent event) {
 		if(event.phase == Phase.START)
-			delta = event.renderTickTime;
+			time = (float) Math.ceil(time);
 	}
 }
