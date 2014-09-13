@@ -15,7 +15,6 @@ public class EmoteZombie extends EmoteBase {
 
 	@Override
 	public Timeline getTimeline(EntityPlayer player, ModelBiped model) {
-		float pi = (float) Math.PI;
 		Timeline timeline = Timeline.createParallel()
 			.beginSequence()
 				.push(Tween.set(model, ModelAccessor.HEAD_X).target(0F))

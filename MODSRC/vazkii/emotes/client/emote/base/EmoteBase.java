@@ -10,6 +10,8 @@ import aurelienribon.tweenengine.TweenManager;
 
 public abstract class EmoteBase {
 
+	public static final float pi = (float) Math.PI;
+	
 	public TweenManager emoteManager;
 	private ModelBiped model;
 	private EmoteState state;
