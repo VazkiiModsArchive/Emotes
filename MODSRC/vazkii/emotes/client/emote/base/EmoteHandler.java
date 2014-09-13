@@ -71,7 +71,6 @@ public final class EmoteHandler {
 		for(String emote : emoteMap.keySet())
 			str = str + button.replaceAll("%emote%", emote) + split;
 		str = str.replaceAll(Pattern.quote("," + split) + "$", "]");
-		System.out.println(str);
 		
 		return IChatComponent.Serializer.func_150699_a(str);
 	}
