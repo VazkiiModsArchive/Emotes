@@ -1,6 +1,7 @@
 package vazkii.emotes.client;
 
 import net.minecraft.client.model.ModelBiped;
+import vazkii.emotes.client.emote.EmoteAirGuitar;
 import vazkii.emotes.client.emote.EmoteCheer;
 import vazkii.emotes.client.emote.EmoteClap;
 import vazkii.emotes.client.emote.EmoteExorcist;
@@ -9,6 +10,7 @@ import vazkii.emotes.client.emote.EmoteGangnamStyle;
 import vazkii.emotes.client.emote.EmoteHeadbang;
 import vazkii.emotes.client.emote.EmoteNo;
 import vazkii.emotes.client.emote.EmotePoint;
+import vazkii.emotes.client.emote.EmoteStand;
 import vazkii.emotes.client.emote.EmoteSalute;
 import vazkii.emotes.client.emote.EmoteShaftHeadTilt;
 import vazkii.emotes.client.emote.EmoteShrug;
@@ -41,6 +43,7 @@ public class ClientProxy extends CommonProxy {
 	}
 	
 	private void initEmotes() {
+		EmoteHandler.emoteMap.put("airguitar", EmoteAirGuitar.class);
 		EmoteHandler.emoteMap.put("cheer", EmoteCheer.class);
 		EmoteHandler.emoteMap.put("clap", EmoteClap.class);
 		EmoteHandler.emoteMap.put("exorcist", EmoteExorcist.class);
@@ -52,6 +55,7 @@ public class ClientProxy extends CommonProxy {
 		EmoteHandler.emoteMap.put("salute", EmoteSalute.class);
 		EmoteHandler.emoteMap.put("shaftheadtilt", EmoteShaftHeadTilt.class);
 		EmoteHandler.emoteMap.put("shrug", EmoteShrug.class);
+		EmoteHandler.emoteMap.put("stand", EmoteStand.class);
 		EmoteHandler.emoteMap.put("think", EmoteThink.class);
 		EmoteHandler.emoteMap.put("wave", EmoteWave.class);
 		EmoteHandler.emoteMap.put("yes", EmoteYes.class);
