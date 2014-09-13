@@ -5,6 +5,11 @@ import net.minecraft.client.model.ModelBiped;
 public class EmoteState {
 
 	float[] states = new float[0];
+	EmoteBase emote;
+	
+	public EmoteState(EmoteBase emote) {
+		this.emote = emote;
+	}
 	
 	public void save(ModelBiped model) {
 		float[] values = new float[1];
@@ -22,7 +27,10 @@ public class EmoteState {
 			float[] values = new float[1];
 			for(int i = 0; i < ModelAccessor.STATE_COUNT; i++) {
 				values[0] = states[i];
-				ModelAccessor.INSTANCE.setValues(model, i, values);
+				
+				int part = i / 3 * 3;
+				if(emote.usesBodyPart(part))
+					ModelAccessor.INSTANCE.setValues(model, i, values);
 			}
 		}
 	}

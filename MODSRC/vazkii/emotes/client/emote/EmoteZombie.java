@@ -42,4 +42,9 @@ public class EmoteZombie extends EmoteBase {
 		return timeline;
 	}
 
+	@Override
+	public boolean usesBodyPart(int part) {
+		return part == ModelAccessor.HEAD || part == ModelAccessor.LEFT_ARM || part == ModelAccessor.RIGHT_ARM;
+	}
+
 }

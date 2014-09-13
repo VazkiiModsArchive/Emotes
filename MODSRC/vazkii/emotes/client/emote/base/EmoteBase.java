@@ -18,7 +18,7 @@ public abstract class EmoteBase {
 	
 	public EmoteBase(EntityPlayer player, ModelBiped model) {
 		emoteManager = new TweenManager();
-		state = new EmoteState();
+		state = new EmoteState(this);
 		this.model = model;
 		
 		getTimeline(player, model).start(emoteManager).setCallback(new TweenCallback() {
@@ -31,6 +31,8 @@ public abstract class EmoteBase {
 	}
 	
 	public abstract Timeline getTimeline(EntityPlayer player, ModelBiped model);
+	
+	public abstract boolean usesBodyPart(int part);
 	
 	public void update() {
 		state.load(model);

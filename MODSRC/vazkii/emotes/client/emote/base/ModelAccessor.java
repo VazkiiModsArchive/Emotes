@@ -12,12 +12,12 @@ public class ModelAccessor implements TweenAccessor<ModelBiped> {
 	private static final int ROT_Y = 1;
 	private static final int ROT_Z = 2;
 
-	private static final int HEAD = 0 * 3;
-	private static final int BODY = 1 * 3;
-	private static final int RIGHT_ARM = 2 * 3;
-	private static final int LEFT_ARM = 3 * 3;
-	private static final int RIGHT_LEG = 5 * 3;
-	private static final int LEFT_LEG = 6 * 3;
+	public static final int HEAD = 0 * 3;
+	public static final int BODY = 1 * 3;
+	public static final int RIGHT_ARM = 2 * 3;
+	public static final int LEFT_ARM = 3 * 3;
+	public static final int RIGHT_LEG = 5 * 3;
+	public static final int LEFT_LEG = 6 * 3;
 
 	public static final int HEAD_X = HEAD + ROT_X;
 	public static final int HEAD_Y = HEAD + ROT_Y;

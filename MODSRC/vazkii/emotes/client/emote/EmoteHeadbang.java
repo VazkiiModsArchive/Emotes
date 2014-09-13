@@ -31,5 +31,10 @@ public class EmoteHeadbang extends EmoteBase {
 				
 		return timeline;
 	}
+	
+	@Override
+	public boolean usesBodyPart(int part) {
+		return part == ModelAccessor.RIGHT_ARM || part == ModelAccessor.HEAD;
+	}
 
 }

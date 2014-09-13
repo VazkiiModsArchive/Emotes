@@ -23,4 +23,9 @@ public class EmoteExorcist extends EmoteBase {
 		return timeline;
 	}
 
+	@Override
+	public boolean usesBodyPart(int part) {
+		return part == ModelAccessor.HEAD;
+	}
+
 }
