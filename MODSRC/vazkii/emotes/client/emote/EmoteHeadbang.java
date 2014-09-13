@@ -16,17 +16,18 @@ public class EmoteHeadbang extends EmoteBase {
 	@Override
 	public Timeline getTimeline(EntityPlayer player, ModelBiped model) {
 		float pi = (float) Math.PI;
-		Timeline timeline = Timeline.createSequence().beginParallel()
+		Timeline timeline = Timeline.createSequence()
+			.beginParallel()
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 400F).target(-pi))
 				.push(Tween.to(model, ModelAccessor.HEAD_X, 400F).target(0F))
 				.push(Tween.to(model, ModelAccessor.HEAD_Y, 400F).target(0F))
 				.push(Tween.to(model, ModelAccessor.HEAD_Z, 400F).target(0F))
-				.end().beginParallel()
+			.end()
+			.beginParallel()
 				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 300F).target(-pi + 2F).repeatYoyo(11, 0F))
 				.push(Tween.to(model, ModelAccessor.HEAD_X, 300F).target(pi - 2F).repeatYoyo(11, 0F))
-				.end().beginSequence()
-				.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 600F).target(0F))
-				.end();
+			.end()
+			.push(Tween.to(model, ModelAccessor.RIGHT_ARM_X, 600F).target(0F));
 				
 		return timeline;
 	}

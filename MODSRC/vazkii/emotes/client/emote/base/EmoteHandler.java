@@ -25,8 +25,7 @@ public final class EmoteHandler {
 	}
 	
 	public static void putEmote(EntityPlayer player, Class<? extends EmoteBase> clazz) {
-		RenderPlayer render = (RenderPlayer) RenderManager.instance.entityRenderMap.get(EntityPlayer.class);
-		ModelBiped model = render.modelBipedMain;
+		ModelBiped model = getPlayerModel();
 		try {
 			playerEmotes.put(player, clazz.getConstructor(EntityPlayer.class, ModelBiped.class).newInstance(player, model));
 		} catch(Exception e) {
@@ -40,11 +39,21 @@ public final class EmoteHandler {
 			
 			if(playerEmotes.containsKey(player)) {
 				EmoteBase emote = playerEmotes.get(player);
-				if(emote.isDone())
+				if(emote.isDone()) {
 					playerEmotes.remove(player);
+					ModelBiped model = getPlayerModel();
+					
+					model.bipedHead.rotateAngleZ = 0F;
+					model.bipedHeadwear.rotateAngleZ = 0F;
+				}
 				else emote.update();
 			}
 		}
+	}
+	
+	private static ModelBiped getPlayerModel() {
+		RenderPlayer render = (RenderPlayer) RenderManager.instance.entityRenderMap.get(EntityPlayer.class);
+		return render.modelBipedMain;
 	}
 	
 	public static String buildEmoteListStr() {
