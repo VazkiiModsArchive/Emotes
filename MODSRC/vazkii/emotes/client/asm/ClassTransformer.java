@@ -18,7 +18,7 @@ public class ClassTransformer implements IClassTransformer {
 
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
-		if(transformedName.equals("net.minecraft.client.model.ModelBiped")) {
+		if(transformedName.equals("net.minecraft.client.model.ModelBiped") || transformedName.equals("micdoodle8.mods.galacticraft.core.client.model.ModelPlayerGC")) {
 			log("Starting on " + transformedName);
 			String funcName = "setRotationAngles";
 			String obfName = "a";
